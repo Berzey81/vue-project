@@ -20,7 +20,7 @@ const state = reactive({
 
 onMounted(async () => {
   try {
-    const response = await axios.get("http://localhost:5000/jobs");
+    const response = await axios.get("/api/jobs");
     state.jobs = response.data;
   } catch (error) {
     console.error("Error fetching jobs:", error);
@@ -42,6 +42,7 @@ onMounted(async () => {
       </div>
 
       <!-- Show job listing when done loading-->
+
       <div v-else class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <JobListing
           v-for="job in state.jobs.slice(0, limit || state.jobs.length)"
